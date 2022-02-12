@@ -1,0 +1,42 @@
+@import url('https://fonts.googleapis.com/css2?family=EB+Garamond&family=Lobster&family=Open+Sans:ital@1&family=Roboto+Serif:ital,wght@1,100&display=swap');
+.tableview{
+  font-family: 'Roboto Serif', sans-serif;
+    padding: 30px;
+    margin: 20px;
+}
+
+  table {
+    border-collapse: collapse;
+    width: 50%;
+    margin-left: 5px;
+  }
+  
+  th,
+  td {
+    border: 1px solid black;
+    text-align: left;
+    padding: 7px;
+    font-size: 20px;
+  }
+  
+  th {
+    background-color: white;
+    color: black;
+  }
+  
+ /* td {
+    background-color: rgba(41, 38, 214, 0.616);
+    color:black;
+  }*/
+
+  tr:nth-child(even){
+    background-color: white;
+    color: black;
+  }
+  tr:nth-child(odd){
+    background-color:gray;
+    color: black;
+  }
+  
+  
+  

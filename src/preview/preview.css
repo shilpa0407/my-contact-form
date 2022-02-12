@@ -1,0 +1,14 @@
+@import url('https://fonts.googleapis.com/css2?family=EB+Garamond&family=Lobster&family=Open+Sans:ital@1&family=Roboto+Serif:ital,wght@1,100&display=swap');
+.preview {
+    font-family: 'Roboto Serif', sans-serif;
+    flex: 3;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 20px;
+    margin: 40px 40px;
+    color: white;
+    background-color: rgba(255, 255, 255, 0.527);
+    height: fit-content;
+  
+}
