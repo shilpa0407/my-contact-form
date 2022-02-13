@@ -9,20 +9,20 @@ const Table = ({ pre }) => {
       <table id="formdata">
         <thead>
           <tr>
-            <th>company Name</th>
+            <th>Name(company)</th>
             <th>Lastname</th>
             <th>Address</th>
           </tr>
         </thead>
         <tbody>
-          {pre.map((gridview) => (
+          {pre.map((tableview) => (
             <tr>
               <td>
-                {gridview.firstname},{gridview.company}
+                {tableview.firstname},{tableview.company}
               </td>
-              <td>{gridview.lastname}</td>
+              <td>{tableview.lastname}</td>
               <td>
-                {gridview.address},{gridview.city},{gridview.state}
+                {tableview.address},{tableview.city},{tableview.state}
               </td>
             </tr>
           ))}
