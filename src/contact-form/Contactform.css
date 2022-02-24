@@ -1,12 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=EB+Garamond&family=Lobster&family=Open+Sans:ital@1&family=Roboto+Serif:ital,wght@1,100&display=swap');
-.container {
- 
+
+.create-form{
   font-family: 'Roboto Serif', sans-serif;
-  flex: 9;
-   display: flex;
-   align-items: flex-start;
-   margin: 40px;
+  overflow: hidden;
+   margin:50px;
    color: white;
+   background-color: rgba(12, 64, 175, 0.788);
+  border-radius: 30px;
  }
  .create-form input{
    width: 20rem; 
@@ -25,10 +25,34 @@
   word-wrap: break-word;
 }
 
-button{
- display: inline;
- margin-right: 20px;
+.btn{
+  display: inline-block;
+  width: calc(100% - 4px);
 }
-.a{
- color: white;
+.btn .btn1, .btn2, .btn3{
+  background-color: yellowgreen;
+  padding: 12px 24px;
+  width: 15%;
+  border: none;
+  display: inline-block;
+  margin: 2px;
+  color: black;
+  border-radius: 25px;
+  margin: 20px 20px;
 }
+
+.main .fname, .lname, .company, .email,
+.pass, .conpass, .adress, .city, .state{
+width: 49%;
+}
+
+.main .fname{
+  float: left;
+}
+ 
+.main .lname, .conpass, .state{
+  float: right;
+}
+
+span { display: block; margin: 0 0 3px; font-size: 1.2em; font-weight: bold; }
+label {  float: left; margin: 0 20px 0 0; }

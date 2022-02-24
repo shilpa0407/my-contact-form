@@ -4,17 +4,16 @@
 body {
   margin: 0;
   padding: 0;
-  background-image: url("https://images.freecreatives.com/wp-content/uploads/2016/04/Plain-Black-Cubes-Background.jpg");
+  background-color: white;
   color: #4e5e72;
   text-align: center;
-  /* font-family: monospace; */
   
 }
 .main{
   display: flex;
-  
 }
+
 .app {
   overflow-x:hidden;
-    overflow-y:visible;
+  overflow-y:visible;
 }

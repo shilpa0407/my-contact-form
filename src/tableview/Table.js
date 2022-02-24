@@ -1,11 +1,11 @@
 import React from "react";
 import "./Table.css"
 import ReactHTMLTableToExcel from "react-html-table-to-excel";
+import { Button } from "semantic-ui-react";
 
 const Table = ({ pre }) => {
   return (
     <div className="tableview">
-   
       <table id="formdata">
         <thead>
           <tr>
@@ -24,11 +24,13 @@ const Table = ({ pre }) => {
               <td>
                 {tableview.address},{tableview.city},{tableview.state}
               </td>
+       
             </tr>
           ))}
         </tbody>
       </table>
-      <div style={{float :"left"}}>
+      <Button className="btn4"
+      style={{float :"left"}}>
         { pre.length !==0 ? 
         <ReactHTMLTableToExcel
           table="formdata"
@@ -36,7 +38,7 @@ const Table = ({ pre }) => {
           sheet="sheet"
           buttonText="Export to CSV"
         /> : ""}
-      </div>
+      </Button>
     </div>
   );
 };

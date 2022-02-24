@@ -2,41 +2,48 @@
 .tableview{
   font-family: 'Roboto Serif', sans-serif;
     padding: 30px;
-    margin: 20px;
+   
+    background-color:  rgba(12, 64, 175, 0.788);
+    border-radius: 30px;
+    width: 60%;
+    margin-left: auto;
+    margin-right: auto;
+  
+    
 }
 
   table {
     border-collapse: collapse;
-    width: 50%;
-    margin-left: 5px;
+    width: 100%;
+
   }
   
   th,
   td {
-    border: 1px solid black;
+    border: 1px solid white;
     text-align: left;
     padding: 7px;
     font-size: 20px;
   }
   
   th {
-    background-color: white;
+    background-color: yellowgreen;
     color: black;
+    border-radius: 30px;
   }
-  
- /* td {
-    background-color: rgba(41, 38, 214, 0.616);
-    color:black;
-  }*/
+
 
   tr:nth-child(even){
-    background-color: white;
+    background-color:yellowgreen;
     color: black;
+   
   }
   tr:nth-child(odd){
-    background-color:gray;
+    background-color:white;
     color: black;
   }
+ 
+  
   
   
   

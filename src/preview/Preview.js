@@ -5,15 +5,14 @@ const Preview = ({ previewdata }) => {
   
   return (
     <div className="preview">
+    
       <h1>PREVIEW</h1>
-      <ul>
-      <li>Name: {previewdata.firstname} {previewdata.lastname}</li>
-      <li>Company: {previewdata.company}</li>
-      <li>Email: {previewdata.email}</li>
-      <li>Address: {previewdata.address} </li>
-      <li>City: {previewdata.city}</li>
-      <li>State: {previewdata.state}</li>
-      </ul>
+      <p>Name:  {previewdata.firstname} {previewdata.lastname}</p>
+      <p>Company:  {previewdata.company}</p>
+      <p>Email:  {previewdata.email}</p>
+      <p>Address:  {previewdata.address} </p>
+      <p>City:  {previewdata.city}</p>
+      <p>State:  {previewdata.state}</p>
     </div>
   );
 };
