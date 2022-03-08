@@ -1,12 +1,11 @@
 import React from "react";
-import "./preview.css";
+import "./Preview.css";
 
 const Preview = ({ previewdata }) => {
   
   return (
     <div className="preview">
-    
-      <h1>PREVIEW</h1>
+      <h4>PREVIEW</h4>
       <p>Name:  {previewdata.firstname} {previewdata.lastname}</p>
       <p>Company:  {previewdata.company}</p>
       <p>Email:  {previewdata.email}</p>

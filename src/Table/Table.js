@@ -4,6 +4,9 @@ import ReactHTMLTableToExcel from "react-html-table-to-excel";
 import { Button } from "semantic-ui-react";
 
 const Table = ({ pre }) => {
+
+
+
   return (
     <div className="tableview">
       <table id="formdata">
@@ -24,7 +27,6 @@ const Table = ({ pre }) => {
               <td>
                 {tableview.address},{tableview.city},{tableview.state}
               </td>
-       
             </tr>
           ))}
         </tbody>
@@ -41,6 +43,6 @@ const Table = ({ pre }) => {
       </Button>
     </div>
   );
-};
+}
 
 export default Table;

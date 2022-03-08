@@ -1,9 +1,12 @@
-import React, { useState} from "react";
-import {Form , Button} from 'semantic-ui-react';
+import React from "react"
 import "./Contactform.css"
+import { Formik ,Form, Field, ErrorMessage} from "formik";
+import * as yup from "yup"
+
 
 const Contactform = (props) => {
-  const initialValues = {
+
+  const formInitialSchema = {
     firstname: "",
     lastname: "",
     company: "",
@@ -15,229 +18,169 @@ const Contactform = (props) => {
     state: "",
   };
 
-  const [formValues, setFormValues] = useState(initialValues);
-  const [formErrors, setFormErrors] = useState({});
-  const [isSubmit, setIsSubmit] = useState(false);
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormValues({ ...formValues, [name]: value });
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-
-    setFormErrors(validate(formValues));
-    setIsSubmit(true);
-  };
-
-  const validate = (values) => {
-    const errors = {};
-    const regex1 = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
-    const regex2 = /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,15}$/;
-
-    if (!values.firstname) {
-      errors.firstname = "*this field is required";
-    } else if (values.firstname.length > 25) {
-      errors.firstname = "* this field is required";
-    }
-    if (!values.lastname) {
-      errors.lastname = "*this field is required";
-    } else if (values.lastname.length > 25) {
-      errors.lastname = "* this field is required";
-    }
-    if (!values.company) {
-      errors.company = "*this field is required";
-    } else if (values.company.length > 50) {
-      errors.company = "* this field is required";
-    }
-    if (!values.email) {
-      errors.email = "*this field is required";
-    } else if (!regex1.test(values.email)) {
-      errors.email = "this field is required";
-    }
-    if (!values.password) {
-      errors.password = "*this field is required";
-    } else if (!regex2.test(values.password)) {
-      errors.password =
-        "password must be between 6-15 character which consist atleast one 1-10, a-z, @$*!+";
-    }
-    if (!values.confirm_password) {
-      errors.confirm_password = "*this field is required";
-    } else if (values.confirm_password !== values.password) {
-      errors.confirm_password = "*password did not match";
-    }
-    if (!values.address) {
-      errors.address = "*this field is required";
-    } else if (values.address.length > 50) {
-      errors.address = "* character limit exceeded";
-    }
-    if (!values.city) {
-      errors.city = "*this field is required";
-    } else if (values.city.length > 50) {
-      errors.city = "* character limit exceeded";
-    }
-    if (!values.state) {
-      errors.state = "*this field is required";
-    } else if (values.state.length > 50) {
-      errors.state = "* character limit exceeded";
-    }
-    return errors;
-  };
-
+  const handleFormSubmit = (values) => {
+    console.log("Submitted values", values)
+}
   const handleClear = () => {
-    setFormValues(initialValues);
-  };
+    window.location.reload(false);
+};
+
+  const formvalidationSchema = yup.object().shape({
+    firstname: yup.string().required("plese enter your firstname")
+    .min(2,"firstname is too short").max(25,"firstname too long"),
+
+    lastname: yup.string().required("plese enter your lastname")
+    .min(2,"lastname is too short").max(25,"lastname too long"),
+
+    company: yup.string().required("plese enter your comapny name")
+    .max(50,"should not be greater than 50 chars"),
+
+    email: yup.string().required("plese enter your email")
+    .email("plese enter valid email").max(50,"email should not be greater than 50 chars"),
+
+    password: yup.string().required("password is reqired")
+    .min(8, "Password is too short - should be 8 chars minimum")
+    .max(15,"password should not be greater that 15 charecters")
+
+    .matches(/^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,15}$/,
+    "password must be between 8-15 character which consist atleast one 1-10, a-z, @$*!+"),
+
+    confirm_password: yup.string().oneOf([yup.ref('password')], "Passwords did not match")
+    .required('Confirm Password is required'),
+
+    address: yup.string().required("plese enter address")
+    .max(75, "address should not be greater than 75 chars"),
+
+    city: yup.string().required("plese enter your city")
+    .max(50, " city should not be greter than 50 chars"),
+
+    state: yup.string().required("plese enter your state")
+    .max(25,"state should not be greter than 25 chars"),
+  });
+   
 
   return (
-   
-      <Form onSubmit={handleSubmit} className="create-form">
-        <h1>CONTACT FORM</h1>
-          <Form.Field  className="fname">
-          
+    <>
+    <div className="create-form">
+    <Formik initialValues={formInitialSchema}
+     validationSchema = {formvalidationSchema}  
+     onSubmit={(values => handleFormSubmit(values))}>
+    {({ errors, handleChange, isValid, isSubmitting, values}) =>(
+    
+      <Form >
+      <div className="main">
+        <h3 className="h1">CONTACT FORM</h3>
+          <div className="firstname">
             <label for="firstname"><span>Firstname</span>
-            <input
+            <Field
               type="text"
               name="firstname"
-              placeholder="firstname"
-              value={formValues.firstname}
-              onChange={handleChange}/>
-            <p>{formErrors.firstname}</p>
+              placeholder="firstname" className ="fname" />
+            <p><ErrorMessage name = "firstname"/></p>
             </label>
-            </Form.Field>
+            </div>
           
-          <Form.Field className="lname">
+        <div className="lastname">
             <label for= "lastName"><span>Lastname</span>
-            <input
+            <Field
               type="text"
               name="lastname"
-              placeholder="lastname"
-              value={formValues.lastname}
-              onChange={handleChange}
-            />
-            <p>{formErrors.lastname}</p>
+              placeholder="lastname" className ="lname" />
+             <p><ErrorMessage name = "lastname"/></p>
             </label>
-            </Form.Field>
+            </div>
        
-            <Form.Field className="company">
+         <div className="company">   
           <label for="company"><span>Company</span>
-          <input
+          <Field
             type="text"
             name="company"
-            placeholder="company"
-            value={formValues.company}
-            onChange={handleChange}
-          /> 
-        <p>{formErrors.company}</p>
+            placeholder="company" className ="comp"  /> 
+         <p><ErrorMessage name = "company" /></p>
         </label>
-        </Form.Field>
+        </div><br></br>
 
-        <Form.Field className="email">
+        <div className="email">
           <label for="email"><span>Email Address</span>
-          <input
+          <Field
             type="email"
             name="email"
-            placeholder="email"
-            value={formValues.email}
-            onChange={handleChange}
-          />
-        <p>{formErrors.email}</p>
-        </label>
-        </Form.Field>
+            placeholder="email" className ="eml"  />
+      <p><ErrorMessage name = "email" /></p>
+        </label> 
+        </div><br></br>
+        
 
-        <Form.Field className="pass">
+     <div className="passoWord">
             <label for="password"><span>Password</span>
-            <input
+            <Field
               type="password"
               name="password"
-              placeholder="password"
-              value={formValues.password}
-              onChange={handleChange}
-            />
-            <p>{formErrors.password}</p>
+              placeholder="password" className ="pass" />
+             <p><ErrorMessage name = "password" /></p>
             </label>
-          </Form.Field>
+             </div>
+         
 
-          <Form.Field  className="conpass">
+     <div className="conpassword">
             <label for="conpassword"><span>Confirm Password</span>
-            <input
+            <Field
               type="password"
               name="confirm_password"
-              placeholder="confirm password"
-              value={formValues.confirm_password}
-              onChange={handleChange}/>
-            <p>{formErrors.confirm_password}</p>
-            </label>
-            </Form.Field>
-
-            <Form.Field className="adress">
+              placeholder="confirm password" className ="conpass"/>
+           <p><ErrorMessage name = "confirm_password" /></p>
+            </label> 
+            </div>
+           
+<div className="address">
           <label for="address"><span>Address</span>
-          <input
+          <Field
             type="text"
             name="address"
-            placeholder="address"
-            value={formValues.address}
-            onChange={handleChange}
-          />
-           <p>{formErrors.address}</p>
+            placeholder="address" className ="addr"  />
+             <p><ErrorMessage name = "address" /></p>
            </label>
-          </Form.Field>
-       
+            </div>
 
-        <Form.Field className="city">
+         <div className="city">
             <label for="city"><span>City</span>
-            <input
+            <Field
               type="text"
               name="city"
-              placeholder="city"
-              value={formValues.city}
-              onChange={handleChange}
-            />
-            <p>{formErrors.city}</p>
+              placeholder="city" className ="cit"  />
+             <p><ErrorMessage name = "city" /></p>
             </label>
-            </Form.Field>
+             </div>
 
-            <Form.Field className="state"> 
+          <div className="state">
             <label for="state"><span>State</span>
-            <input
+            <Field
               type="text"
               name="state"
-              placeholder="state"
-              value={formValues.state}
-              onChange={handleChange}
-            />
-            <p>{formErrors.state}</p>
+              placeholder="state"  className ="stat"/>
+              <p><ErrorMessage name = "state"/></p>
             </label>
-            </Form.Field>
-            
+             </div>
 
-        
-        <div className="btn">
-
-        <Button className="btn1" style={{marginRight: "16px"}}
-            onClick={
-              Object.keys(formErrors).length === 0 &&
-              isSubmit &&
-              (() => props.previewHandler(formValues)) }>Preview
-          </Button>
-
-          <Button className="btn2" style={{marginRight: "16px"}}
-            onClick={
-              Object.keys(formErrors).length === 0 &&
-              isSubmit &&
-              (()=> props.valuehandler(formValues))} > Add
-          </Button>
-
-          <Button className="btn3">
-          <a className="a" href="" onClick={handleClear}>
-            Clear
-          </a>
-          </Button>
-          </div>
-      </Form>
+             <div className="btn">
+          <button type="submit"  onClick={ (() => props.previewHandler(values))}
+          className="btn1"> preview</button>
+          
   
-    
+          <button  onClick = {(() => props.valuehandler(values))}
+           className="btn2"> Add</button>
+        
+        <button className="btn3" onClick={handleClear}>  Clear </button>
+        </div>
+            </div>
+      </Form>
+    )
+    }
+      </Formik>
+      </div>
+      </>
   );
-};
+  }
 
 export default  Contactform;

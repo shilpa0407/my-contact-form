@@ -2,57 +2,76 @@
 
 .create-form{
   font-family: 'Roboto Serif', sans-serif;
+  margin-left: 10rem;
   overflow: hidden;
-   margin:50px;
-   color: white;
-   background-color: rgba(12, 64, 175, 0.788);
-  border-radius: 30px;
- }
- .create-form input{
-   width: 20rem; 
-   padding: 10px; 
-   border: 1px solid #ccc; 
-   border-radius: 4px; 
-   box-sizing: border-box; 
-  margin: 10px;
- }
+   border-radius: 85px;
+   height: ;
+   width: 555px;
+   margin-top: 1rem; 
+   box-shadow: 0px 4px 20px rgba(42, 50, 53, 0.39);
+}
 
+.create-form .main{
+  margin-left: 4rem;
+  color: black;
+}
+
+.main .h1{
+  font-size: 2;
+}
+
+.create-form .fname, .lname, .pass, .conpass, .cit, .stat{
+  width: 12rem;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  margin: 10px;
+  border-color: #F3A953;
+}
+.create-form .comp, .eml{
+  width: 17rem;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  margin: 10px;
+  border-color: #F3A953;
+}
+.create-form .addr{
+width: 20rem;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  margin: 10px;
+  border-color: #F3A953;
+}
 .create-form p{
   margin: 0px;
   display: flex;
   align-items: flex-start;
   color: red;
   word-wrap: break-word;
+  font-size: small;
+  font-weight: bolder;
 }
 
 .btn{
-  display: inline-block;
+  display: flex;
   width: calc(100% - 4px);
 }
+
 .btn .btn1, .btn2, .btn3{
-  background-color: yellowgreen;
+  background-color: #F3A953;
   padding: 12px 24px;
-  width: 15%;
+  width: 17%;
   border: none;
   display: inline-block;
-  margin: 2px;
   color: black;
   border-radius: 25px;
   margin: 20px 20px;
 }
 
-.main .fname, .lname, .company, .email,
-.pass, .conpass, .adress, .city, .state{
-width: 49%;
-}
-
-.main .fname{
-  float: left;
-}
- 
-.main .lname, .conpass, .state{
-  float: right;
-}
-
-span { display: block; margin: 0 0 3px; font-size: 1.2em; font-weight: bold; }
-label {  float: left; margin: 0 20px 0 0; }
+span {display: block; margin: 0 0 3px; font-size: 0.75rem; font-weight: bolder;}
+label {  float: left;  }

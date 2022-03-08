@@ -1,17 +1,17 @@
 import { useState } from "react";
 import "./App.css";
 import Contactform from "./contact-form/Contactform";
-import Table from "./tableview/Table";
-
+import Table from "./Table/Table";
 import Preview from "./preview/Preview";
+
 
 function App() {
   const [preview, setPreview] = useState([]);
   const [previewdata, setPreviewdata] = useState({});
 
 
-  const valueHandler = (val) => {
-    setPreview([...preview, val]);
+  const valueHandler = (values) => {
+    setPreview([...preview, values]);
    
   };
 
@@ -23,7 +23,7 @@ function App() {
     <div className="app">
       <div className="main">
         <Contactform valuehandler={valueHandler} previewHandler={previewHandler} />
-        <Preview previewdata={previewdata} />
+        <Preview previewdata={previewdata}/>
       </div>
 
       <Table pre={preview} />
